@@ -10,13 +10,16 @@ var usersRouter = require('./routes/users');
 var eventsRouter = require('./routes/events');
 var youtubeRouter = require('./routes/youtube');
 var mediumRouter = require('./routes/medium');
+var investRouter = require('./routes/investors');
 var cookieSession = require('cookie-session')
 var passport = require('passport');
 var app = express();
 
-mongoose.Promise=global.Promise;
-mongoose.connect(config.db_url,(err)=>{
+// mongoose.Promise=global.Promise;
+
+mongoose.connect('mongodb://manmeet:man1meet@ds020208.mlab.com:20208/paypalhack',{ useNewUrlParser: true },(err)=>{
   if(err) console.log("Error connecting to db ",err);
+  console.log("Connected to db");
 });
 
 // view engine setup
@@ -53,6 +56,7 @@ app.use('/users', usersRouter);
 app.use('/events',eventsRouter);
 app.use('/youtube',youtubeRouter);
 app.use('/medium',mediumRouter);
+app.use('/investors',investRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
