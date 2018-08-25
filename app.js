@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var eventsRouter = require('./routes/events');
 var youtubeRouter = require('./routes/youtube');
 var mediumRouter = require('./routes/medium');
-var session=require('express-session');
+var cookieSession = require('cookie-session')
 var passport = require('passport');
 var app = express();
 
@@ -29,10 +29,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-  secret: 'secretkey',
-  resave: true,
-  saveUninitialized: false,
+app.use(cookieSession({
+  name: 'session',
+  keys: ['secret'],
+  maxAge: 24*60*60*1000
 }));
 
 app.use(passport.initialize());
