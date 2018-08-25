@@ -52,7 +52,7 @@ module.exports = function (app, passport) {
 
   app.post('/chat',(req,res)=>{
     let text=req.body.text;
-    // console.log(text);
+    console.log(text);
     res.json({
       'msg': "thank you poddar",
       'data': text
