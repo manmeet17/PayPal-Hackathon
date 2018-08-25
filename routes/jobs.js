@@ -1,11 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var Investor = require('../models/investor');
+var Job = require('../models/job');
 
-
-router.get('/', (req, res) => {
-    Investor.find({}, (err, results) => {
-        if (results) {
+router.get('/',(req,res)=>{
+    Job.find({},(err,results)=>{
+        if(results){
             res.status(200).json({
                 data: results
             });
@@ -18,12 +17,13 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    let user = new Investor({
-        name: req.body.name,
-        img: req.body.imgurl,
+    let job = new Job({
+        title: req.body.title,
+        hits: req.body.hits,
+        rate: req.body.rate
     });
 
-    user.save((err) => {
+    job.save((err) => {
         if (err) {
             res.json({
                 "status": 200,
@@ -32,8 +32,8 @@ router.post('/', (req, res) => {
             });
         } else {
             res.status(200).json({
-                "msg": "Created!!",
-                user
+                "msg": "Created",
+                job
             });
         }
     });
