@@ -50,6 +50,14 @@ module.exports = function (app, passport) {
     }
   });
 
+  app.post('/chat',(req,res)=>{
+    let text=req.body.text;
+    // console.log(text);
+    res.json({
+      'msg': "thank you poddar",
+      'data': text
+    })
+  });
   // app.get('/',(req,res)=>{
   //   res.json({
   //     msg: "Page"
